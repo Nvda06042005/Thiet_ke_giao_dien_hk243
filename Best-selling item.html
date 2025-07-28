@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BEST‑SELLING ITEMS – SWE StreetWearEazy</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Main stylesheet (dùng lại của trang index) -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">Miễn phí vận chuyển với đơn hàng trên 500 k. Hàng pre‑order còn được giảm thêm 5%.</div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">swe</a>
+      <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+        <button aria-label="Search">🔍</button>
+      </div>
+      <div class="user-actions">
+        <a href="#"><span class="icon">👤</span> Đăng nhập / Đăng ký</a>
+        <a href="#" class="cart" aria-label="Giỏ hàng"><span class="icon">🛒</span><span class="cart-count">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="New Arrival.html">new arrivals</a></li>
+      <li><a href="Best-selling item.html">best‑selling items</a></li>
+      <li><a href="tops.html">tops</a></li>
+      <li><a href="bottoms.html">bottoms</a></li>
+      <li><a href="outerwear.html">outerwear</a></li>
+      <li><a href="accessories.html">accessories</a></li>
+      <li><a href="CLEARANCESALE.html">sale off</a></li>
+      <li><a href="colections.html">tất cả sản phẩm</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== CONTENT ===== -->
+  <section class="collection">
+   <!-- BREADCRUMB BAR – cho vào NGAY dưới <header> -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <a href="index.html">Trang chủ</a>
+    <span class="sep">/</span>
+    <a href="#">Danh mục</a>
+    <span class="sep">/</span>
+    <span>BEST-SELLING ITEMS</span><!-- đổi ở trang kia -->
+  </div>
+</div>
+
+<!-- ========== SECTION ========== -->
+<section class="collection container">
+
+  <!-- HÀNG 1: H1 + dropdown sort -->
+<div class="collection-header">
+  <h1 class="page-title">BEST-SELLING ITEMS</h1>
+
+  <select class="sort-select" name="sort" aria-label="Sắp xếp">
+    <option value="featured" selected>Sản phẩm nổi bật</option>
+    <option value="price-asc">Giá: Tăng dần</option>
+    <option value="price-desc">Giá: Giảm dần</option>
+    <option value="name-asc">Tên: A‑Z</option>
+    <option value="name-desc">Tên: Z‑A</option>
+    <option value="oldest">Cũ nhất</option>
+    <option value="latest">Mới nhất</option>
+    <option value="best-seller">Bán chạy nhất</option>
+  </select>
+</div>
+
+
+  <!-- HÀNG 2: thanh bộ lọc ngang -->
+  <div class="filter-bar">
+    <button class="filter-toggle">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6"  x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="14" y2="12"/>
+        <line x1="3" y1="18" x2="8"  y2="18"/>
+      </svg>
+      BỘ LỌC
+    </button>
+
+    <span class="divider"></span>
+
+   <!-- KHỐI GIÁ SẢN PHẨM -->
+<details class="filter-group">
+  <summary>GIÁ SẢN PHẨM</summary>
+
+  <!-- Danh sách phải nằm NGAY sau summary -->
+  <ul class="filter-list">
+    <li><label><input type="checkbox" value="0-149"> Dưới 150,000 đ</label></li>
+    <li><label><input type="checkbox" value="150-249"> 150,000 đ – 250,000 đ</label></li>
+    <li><label><input type="checkbox" value="250-349"> 250,000 đ – 350,000 đ</label></li>
+    <li><label><input type="checkbox" value="350-499"> 350,000 đ – 500,000 đ</label></li>
+    <li><label><input type="checkbox" value="500+"> Trên 500,000 đ</label></li>
+  </ul>
+</details>
+
+
+     <!-- KÍCH THƯỚC -->
+<details class="filter-group size">
+  <summary>KÍCH THƯỚC</summary>
+
+  <!-- grid các size -->
+  <div class="size-grid">
+    <label class="size-box"><input type="checkbox" value="S">S</label>
+    <label class="size-box"><input type="checkbox" value="M">M</label>
+    <label class="size-box"><input type="checkbox" value="L">L</label>
+    <label class="size-box"><input type="checkbox" value="XL">XL</label>
+  </div>
+</details>
+
+      <!-- BEST-SELLING ITEMS -->
+<section id="best" class="product-row">
+  <h2 class="section-title">BEST-SELLING ITEMS</h2>
+
+  <div class="product-grid">
+    <!-- ===== HÀNG 1 ===== -->
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best1.jpg" alt="SWE SCRIPT JACKET – BLACK">
+      <div class="product-info">
+        <h3>SWE SCRIPT JACKET – BLACK</h3>
+        <p class="price"><del>792,000₫</del> <strong>720,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best2.jpg" alt="SWE SCRIPT JACKET – BEIGE">
+      <div class="product-info">
+        <h3>SWE SCRIPT JACKET – BEIGE</h3>
+        <p class="price"><del>792,000₫</del> <strong>720,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best3.jpg" alt="SWE CREST BOXY TEE – WHITE">
+      <div class="product-info">
+        <h3>SWE CREST BOXY TEE – WHITE</h3>
+        <p class="price"><del>440,000₫</del> <strong>400,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best4.jpg" alt="SWE SKEYE BOXY TEE – WHITE">
+      <div class="product-info">
+        <h3>SWE SKEYE BOXY TEE – WHITE</h3>
+        <p class="price"><del>462,000₫</del> <strong>420,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <!-- ===== HÀNG 2 ===== -->
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best5.jpg" alt="SWE PEEKING POCKET BOXY TEE – WHITE">
+      <div class="product-info">
+        <h3>SWE PEEKING POCKET BOXY TEE – WHITE</h3>
+        <p class="price"><del>385,000₫</del> <strong>350,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑22%</span>
+      <img src="best-selling_item/best6.jpg" alt="SWE RED BUTTON SHIRT – BLACK">
+      <div class="product-info">
+        <h3>SWE RED BUTTON SHIRT – BLACK</h3>
+        <p class="price"><del>495,000₫</del> <strong>386,100₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best7.jpg" alt="SWE PIN BUTTON SHIRT – GRAY">
+      <div class="product-info">
+        <h3>SWE PIN BUTTON SHIRT – GRAY</h3>
+        <p class="price"><del>495,000₫</del> <strong>450,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best8.jpg" alt="SWE ARC WIDE JEANS  –  MUD FADE">
+      <div class="product-info">
+        <h3>SWE ARC WIDE JEANS  –  MUD FADE</h3>
+        <p class="price"><del>792,000₫</del> <strong>720,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <!-- ===== HÀNG 3 ===== -->
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best9.jpg" alt="SWE DUNE DESTROYED JEANS – BLUE">
+      <div class="product-info">
+        <h3>SWE DUNE DESTROYED JEANS – BLUE</h3>
+        <p class="price"><del>759,000₫</del> <strong>690,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑16%</span>
+      <img src="best-selling_item/best10.jpg" alt="SWE NOMAD DENIM SHORTS – WASHED BLUE">
+      <div class="product-info">
+        <h3>SWE NOMAD DENIM SHORTS – WASHED BLUE</h3>
+        <p class="price"><del>660,000₫</del> <strong>554,400₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best11.jpg" alt="SWE SIGNATURE TEE – BLACK">
+      <div class="product-info">
+        <h3>SWE SIGNATURE TEE – BLACK</h3>
+        <p class="price"><del>418,000₫</del> <strong>380,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑26%</span>
+      <img src="best-selling_item/best12.jpg" alt="SWE NINER TEE – BLACK">
+      <div class="product-info">
+        <h3>SWE NINER TEE – BLACK</h3>
+        <p class="price"><del>429,000₫</del> <strong>317,460₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <!-- ===== HÀNG 4 ===== -->
+    <div class="product-card">
+      <span class="discount">‑18%</span>
+      <img src="best-selling_item/best13.jpg" alt="SWE LIFE TEE  – BLACK">
+      <div class="product-info">
+        <h3>SWE LIFE TEE  – BLACK</h3>
+        <p class="price"><del>418,000₫</del> <strong>342,760₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑21% </span>
+      <img src="best-selling_item/best14.jpg" alt="SWE KID TEE – WHITE">
+      <div class="product-info">
+        <h3>SWE KID TEE – WHITE</h3> 
+        <p class="price"><del>462,000₫</del> <strong>364,980₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">Hết hàng</span>
+      <img src="best-selling_item/best15.jpg" alt="SWE 2BAR BABY TEE – RED">
+      <div class="product-info">
+        <h3>SWE 2BAR BABY TEE – RED</h3>
+        <p class="price"><del>286,000₫</del> <strong> 260,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Hết Hàng</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <span class="discount">‑9%</span>
+      <img src="best-selling_item/best16.jpg" alt="SWE HAZE WASHED BABY TEE – BLUE">
+      <div class="product-info">
+        <h3>SWE HAZE WASHED BABY TEE – BLUE</h3>
+        <p class="price"><del>308,000₫</del> <strong>280,000₫</strong></p>
+        <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+        <button class="buy-btn">Mua ngay</button>
+      </div>
+    </div>
+    
+  </div><!-- /.product-grid -->
+</section>
+
+ <!-- sau </div>  /.product-grid --> 
+
+<!-- ========== PAGINATION  +  SUBSCRIBE ========== -->
+<div class="collection-utility">      <!-- ✅ KHÔNG nằm trong .product-grid -->
+  <div class="pagination-wrap">
+    <nav class="pagination" aria-label="Phân trang">
+      <a class="page current" href="#">1</a>
+      <a class="page" href="#">2</a>
+      <a class="page" href="#">3</a>
+      <span class="dots">…</span>
+      <a class="page" href="#">12</a>
+      <a class="next" href="#" aria-label="Trang kế">&rarr;</a>
+    </nav>
+  </div>
+
+  <section class="subscribe">
+    <form class="subscribe-form">
+      <span class="sub-label">
+        <img class="icon-mail" src="trang chủ/email.png" alt=""> Nhận khuyến mãi
+      </span>
+
+      <div class="input-wrap">
+        <input type="email" placeholder="Nhập email của bạn" required>
+        <button type="submit"><img src="trang chủ/email.png" alt="Gửi"></button>
+      </div>
+    </form>
+  </section>
+</div>
+
+
+  <!-- FOOTER (dùng lại footer của index) -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <h4>About Us</h4>
+        <p>Được thành lập vào cuối năm 2016 trong bối cảnh thời trang streetstyle dần nhen nhóm vào thị trường Việt Nam. Sau 9 năm phát triển, SWE - Street Wear Eazy với slogan Young kids with a mission™ đã chiếm được tình cảm của hầu hết các bạn trẻ yêu mến thời trang đường phố trên khắp cả nước.</p>
+      </div>
+      <div>
+        <h4>Chính sách</h4>
+        <ul>
+          <li>Chính sách bảo mật</li>
+          <li>Hướng dẫn mua hàng</li>
+          <li>Phương thức thanh toán</li>
+          <li>Chính sách giao nhận – vận chuyển</li>
+          <li>Chính sách đổi và bảo hành sản phẩm</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hệ thống cửa hàng SWE</h4>
+        <ul>
+          <li>📍Store 1: 44A Trần Quang Diệu, Phường Nhiêu Lộc, TP HCM</li>
+          <li>📍Store 2: TNP, 26 Lý Tự Trọng, Phường Sài Gòn, TP HCM</li>
+          <li>📍Store 3: Store 29-30 TNP, Tầng B1, Vincom Center Đồng Khởi, Phường Sài Gòn, TP HCM</li>
+          <li>📍Đại lý phân phối chính hãng: SN 84, Tổ 9, Hoàng Công Chất, P. Mường Thanh, TP Điện Biên</li>
+          <li>☎️ 0357 420 420</li>
+          <li>✉️ streetweareazy@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">Copyright © 2025 SWE (STREETWEAREAZY). Powered by Haravan</div>
+  </footer>
+
+  <!-- Floating contacts -->
+  <div class="float-contacts">
+    <a href="tel:0357420420" class="call"><img src="trang chủ/điện thoại.png" alt="call" /></a>
+    <a href="https://zalo.me/" class="zalo"><img src="trang chủ/zalo.jpg" alt="zalo" /></a>
+    <a href="mailto:streetweareazy@gmail.com" class="mail"><img src="trang chủ/email.png" alt="mail" /></a>
+    <a href="https://m.me/StreetWearEazy" class="mess"><img src="trang chủ/message.png" alt="messenger" /></a>
+  </div>
+
+</body>
+</html>

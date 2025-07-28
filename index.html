@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SWE – StreetWearEazy</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Hero slider CSS -->
+  <style>
+    .hero{position:relative;overflow:hidden;min-height:80vh}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out}
+    .hero img.active{opacity:1}
+    #admin-manage-btn { background-color: #dc3545; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none; margin-left: 15px; font-size: 14px; font-weight: 500; }
+    /* Ẩn số 0 trên giỏ hàng ban đầu */
+    .cart-count { display: none; }
+  </style>
+</head>
+<body>
+  <!-- === BẮT BUỘC: THÊM FIREBASE SDK VÀO TRANG CHỦ === -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script>
+      const firebaseConfig = { apiKey: "AIzaSyAAdIRdEEvsdyob6G-Fg6fhAeaCmVCJ_1s", authDomain: "swe-b1034.firebaseapp.com", projectId: "swe-b1034", storageBucket: "swe-b1034.appspot.com", messagingSenderId: "210346329221", appId: "1:210346329221:web:fb481a412c2d93605355ec", measurementId: "G-3LWDZWWEQR" };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+  </script>
+
+  <!-- Top bar -->
+  <div class="topbar">Miễn phí vận chuyển với đơn hàng trên 500 k. Hàng pre‑order còn được giảm thêm 5%.</div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">swe</a>
+      <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+        <button aria-label="Search">🔍</button>
+      </div>
+      <!-- === KHU VỰC USER SẼ THAY ĐỔI ĐỘNG === -->
+      <div class="user-actions" id="user-area">
+        <a href="tao_tk.html"><span class="icon">👤</span> Đăng nhập / Đăng ký</a>
+        <a href="cart.html" class="cart" aria-label="Giỏ hàng"><span class="icon">🛒</span><span class="cart-count">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="New Arrival.html">new arrivals</a></li>
+      <li><a href="Best-selling item.html">best‑selling items</a></li>
+      <li><a href="tops.html">tops</a></li>
+      <li><a href="bottoms.html">bottoms</a></li>
+      <li><a href="outerwear.html">outerwear</a></li>
+      <li><a href="accessories.html">accessories</a></li>
+      <li><a href="CLEARANCESALE.html">sale off</a></li>
+      <li><a href="colections.html">tất cả sản phẩm</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero slider -->
+  <section class="hero">
+    <img src="trang chủ/banner.jpg" class="slide active" alt="Banner 1" />
+    <img src="trang chủ/banner2.jpg" class="slide" alt="Banner 2" />
+  </section>
+
+  <!-- Services -->
+  <section class="services">
+    <div class="service"><span class="s-icon">🚚</span>Giao hàng miễn phí<small>với đơn hàng từ 500 k trở lên</small></div>
+    <div class="service"><span class="s-icon">💬</span>Hỗ trợ 24/7<small>Hỗ trợ online / offline 24/7</small></div>
+    <div class="service"><span class="s-icon">🔄</span>Miễn phí đổi trả<small>Trong vòng 7 ngày</small></div>
+    <div class="service"><span class="s-icon">📞</span>Đặt hàng trực tuyến<small>Hotline: 0357 420 420</small></div>
+  </section>
+
+  <!-- === KHU VỰC SẢN PHẨM MỚI TỪ DATABASE === -->
+  <section id="dynamic-products" class="product-row">
+    <h2 class="section-title">SẢN PHẨM MỚI NHẤT</h2>
+    <div class="product-grid" id="product-display-area">
+      <p>Đang tải sản phẩm...</p>
+    </div>
+  </section>
+
+   <!-- THE FUTURE IS BRIGHT (GIỮ NGUYÊN) -->
+  <section id="new" class="product-row">
+    <h2 class="section-title">THE FUTURE IS BRIGHT</h2>
+    <div class="product-grid">
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/in1.jpg" alt="SWE HOODSTACK ZIP JACKET – BLACK"><div class="product-info"><h3>SWE HOODSTACK ZIP JACKET – BLACK</h3><p class="price"><del>825,000₫</del> <strong>750,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/in2.jpg" alt="SWE HOODSTACK ZIP JACKET – BROWN"><div class="product-info"><h3>SWE HOODSTACK ZIP JACKET – BROWN</h3><p class="price"><del>825,000₫</del> <strong>750,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/in3.jpg" alt="SWE VISION L/S TEE – CREAM"><div class="product-info"><h3>SWE VISION L/S TEE – CREAM</h3><p class="price"><del>520,000₫</del> <strong>480,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/in4.jpg" alt="SWE VISION L/S TEE – BROWN"><div class="product-info"><h3>SWE VISION L/S TEE – BROWN</h3><p class="price"><del>520,000₫</del> <strong>480,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+    </div>
+  </section>
+
+  <!-- BEST‑SELLING ITEMS (GIỮ NGUYÊN) -->
+  <section id="best" class="product-row">
+    <h2 class="section-title">BEST‑SELLING ITEMS</h2>
+    <div class="product-grid">
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best1.jpg" alt="SWE SCRIPT JACKET – BLACK"><div class="product-info"><h3>SWE SCRIPT JACKET – BLACK</h3><p class="price"><del>792,000₫</del> <strong>720,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best2.jpg" alt="SWE SCRIPT JACKET – BEIGE"><div class="product-info"><h3>SWE SCRIPT JACKET – BEIGE</h3><p class="price"><del>792,000₫</del> <strong>720,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best3.jpg" alt="SWE CREST BOXY TEE – WHITE"><div class="product-info"><h3>SWE CREST BOXY TEE – WHITE</h3><p class="price"><del>440,000₫</del> <strong>400,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best4.jpg" alt="SWE SKEYE BOXY TEE – WHITE"><div class="product-info"><h3>SWE SKEYE BOXY TEE – WHITE</h3><p class="price"><del>462,000₫</del> <strong>420,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best5.jpg" alt="SWE KID TEE – WHITE"><div class="product-info"><h3>SWE PEEKING POCKET BOXY TEE – WHITE</h3><p class="price"><del>385,000₫</del> <strong>350,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑22%</span><img src="trang chủ/best6.jpg" alt="SWE 2BAR BABY TEE – RED"><div class="product-info"><h3>SWE RED BUTTON SHIRT – BLACK</h3><p class="price"><del>495,000₫</del> <strong>386,100₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best7.jpg" alt="SWE LIFE TEE – BLACK"><div class="product-info"><h3>SWE PIN BUTTON SHIRT – GRAYK</h3><p class="price"><del>495,000₫</del> <strong>450,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best8.jpg" alt="SWE HAZE BABY TEE – BLUE"><div class="product-info"><h3>SWE ARC WIDE JEANS – MUD FADE</h3><p class="price"><del>792,000₫</del> <strong>720,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best9.jpg" alt="SWE VISION L/S TEE – BROWN"><div class="product-info"><h3>SWE DUNE DESTROYED JEANS –  BLUE</h3><p class="price"><del>759,000₫</del> <strong>690,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑16%</span><img src="trang chủ/best10.jpg" alt="SWE OMBRE HOODIE – GREY"><div class="product-info"><h3>SWE NOMAD DENIM SHORTS – WASHED BLUE</h3><p class="price"><del>660,000₫</del> <strong>554,400₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best11.jpg" alt="SWE CAMO CARGO PANTS"><div class="product-info"><h3>SWE SIGNATURE TEE – BLACK</h3><p class="price"><del>410,000₫</del> <strong>380,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑26%</span><img src="trang chủ/best12.jpg" alt="SWE VISION L/S TEE – CREAM"><div class="product-info"><h3>SWE NINER TEE – BLACK</h3><p class="price"><del>429,000₫</del> <strong>317,460₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑18%</span><img src="trang chủ/best13.jpg" alt="SWE OVERSIZED DENIM JACKET"><div class="product-info"><h3>SWE LIFE TEE – BLACK</h3><p class="price"><del>418,000₫</del> <strong>342,760₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑21%</span><img src="trang chủ/best14.jpg" alt="SWE STACKED JEANS – BLACK"><div class="product-info"><h3>SWE KID TEE – WHITE</h3><p class="price"><del>462,000₫</del> <strong>364,980₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">hết hàng</span><img src="trang chủ/best15.jpg" alt="SWE TURTLENECK KNIT – CREAM"><div class="product-info"><h3>SWE 2BAR BABY TEE – RED</h3><p class="price"><del>286,000₫</del> <strong>260,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+      <div class="product-card"><span class="discount">‑9%</span><img src="trang chủ/best17.jpg" alt="SWE PUFFER JACKET – OLIVE"><div class="product-info"><h3>SWE HAZE WASHED BABY TEE  – BLUE</h3><p class="price"><del>308,000₫</del> <strong>280,000₫</strong></p><ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul><button class="buy-btn">Thêm vào giỏ</button></div></div>
+    </div>
+  </section>
+
+  <!-- Feedback -->
+  <section class="feedback">
+    <h2 class="section-title">FEEDBACK</h2>
+    <div class="gallery">
+      <img src="trang chủ/feedback1.jpg" class="img-a" alt="Feedback 1"><img src="trang chủ/feedback2.jpg" class="img-b" alt="Feedback 2"><img src="trang chủ/feedback3.jpg" class="img-c" alt="Feedback 3"><img src="trang chủ/feedback4.jpg" class="img-d" alt="Feedback 4"><img src="trang chủ/feedback5.jpg" class="img-e" alt="Feedback 5">
+    </div>
+  </section>
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <form class="subscribe-form"><span class="sub-label"><img src="trang chủ/email.png" alt=""> Nhận khuyến mãi</span><div class="input-wrap"><input type="email" placeholder="Nhập email của bạn" required><button type="submit"><img src="trang chủ/email.png" alt="Gửi"></button></div></form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div><h4>About Us</h4><p>Dược thành lập vào cuối năm 2016...</p></div>
+      <div><h4>Chính sách</h4><ul><li>Chính sách bảo mật</li><li>Hướng dẫn mua hàng</li><li>Phương thức thanh toán</li><li>Chính sách giao nhận – vận chuyển</li><li>Chính sách đổi và bảo hành sản phẩm</li></ul></div>
+      <div><h4>Hệ thống cửa hàng SWE</h4><ul><li>Store 1: 44A Trần Quang Diệu...</li><li>Store 2: TNP, 26 Lý Tự Trọng...</li><li>Store 3: Store 29-30 TNP...</li><li>Đại lý phân phối chính hãng...</li><li>☎️ 0357 420 420</li><li>✉️ streetweareazy@gmail.com</li></ul></div>
+    </div>
+    <div class="footer-bottom">Copyright © 2025 SWE (STREETWEAREAZY). Powered by Haravan</div>
+  </footer>
+
+  <!-- Floating contacts -->
+  <div class="float-contacts"><a href="tel:0357420420" class="call"><img src="trang chủ/điện thoại.png" alt="call" /></a><a href="https://zalo.me/" class="zalo"><img src="trang chủ/zalo.jpg" alt="zalo" /></a><a href="mailto:streetweareazy@gmail.com" class="mail"><img src="trang chủ/email.png" alt="mail" /></a><a href="https://m.me/StreetWearEazy" class="mess"><img src="trang chủ/message.png" alt="messenger" /></a></div>
+
+  <!-- Slider JS -->
+  <script>
+    const slides=document.querySelectorAll('.hero .slide');
+    let idx=0;
+    setInterval(()=>{
+      slides[idx].classList.remove('active');
+      idx=(idx+1)%slides.length;
+      slides[idx].classList.add('active');
+    },5000);
+  </script>
+
+  <!-- === JAVASCRIPT CỦA TRANG CHỦ (ĐÃ NÂNG CẤP VỚI GIỎ HÀNG) === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const productArea = document.getElementById('product-display-area');
+        const userArea = document.getElementById('user-area');
+
+        // 1. THEO DÕI TRẠNG THÁI ĐĂNG NHẬP VÀ CẬP NHẬT HEADER
+        auth.onAuthStateChanged(user => {
+            const cartCountElement = document.querySelector('.cart-count');
+            if (user) {
+                db.collection('users').doc(user.uid).get().then(doc => {
+                    if (doc.exists) {
+                        const userData = doc.data();
+                        let html = `<div style="display: flex; align-items: center; gap: 15px;"><span style="font-weight: 500;">Xin chào, ${userData.ten}</span><a href="#" id="logout-btn" style="text-decoration: underline;">Đăng xuất</a>`;
+                        if (userData.role === 'admin') {
+                            html += `<a href="tao_tk.html" id="admin-manage-btn">Quản lý</a>`;
+                        }
+                        html += `</div><a href="cart.html" class="cart" aria-label="Giỏ hàng"><span class="icon">🛒</span><span class="cart-count">0</span></a>`;
+                        userArea.innerHTML = html;
+                        document.getElementById('logout-btn').addEventListener('click', e => { e.preventDefault(); auth.signOut(); });
+                        listenToCart(user.uid);
+                    }
+                });
+            } else {
+                userArea.innerHTML = `<a href="tao_tk.html"><span class="icon">👤</span> Đăng nhập / Đăng ký</a><a href="cart.html" class="cart" aria-label="Giỏ hàng"><span class="icon">🛒</span><span class="cart-count">0</span></a>`;
+                if (cartCountElement) cartCountElement.style.display = 'none';
+            }
+        });
+
+        // 2. TẢI VÀ HIỂN THỊ SẢN PHẨM TỪ FIRESTORE
+        db.collection('products').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
+            let productHTML = '';
+            if (snapshot.empty) {
+                productArea.innerHTML = "<p>Chưa có sản phẩm nào được đăng bán.</p>";
+                return;
+            }
+            snapshot.forEach(doc => {
+                const product = doc.data();
+                productHTML += `
+                    <div class="product-card" data-id="${doc.id}">
+                        <img src="${product.imageUrl}" alt="${product.name}">
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <p class="price"><strong>${product.price.toLocaleString('vi-VN')}₫</strong></p>
+                            <ul class="rating" data-reviews="0"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li><span class="review-count">(0 đánh giá)</span></ul>
+                            <button class="buy-btn">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                `;
+            });
+            productArea.innerHTML = productHTML;
+            attachAddToCartListeners();
+        });
+
+        // 3. HÀM GẮN SỰ KIỆN "THÊM VÀO GIỎ" CHO TẤT CẢ CÁC NÚT
+        function attachAddToCartListeners() {
+            // Gắn sự kiện cho cả sản phẩm động và sản phẩm tĩnh
+            const allBuyButtons = document.querySelectorAll('.buy-btn');
+            allBuyButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    if (!auth.currentUser) {
+                        alert('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
+                        return;
+                    }
+                    const card = event.target.closest('.product-card');
+                    const productId = card.dataset.id; // Lấy ID từ sản phẩm động
+                    
+                    // Nếu là sản phẩm tĩnh, chúng ta cần lấy thông tin từ HTML
+                    if (!productId) {
+                        const name = card.querySelector('h3').textContent;
+                        const priceText = card.querySelector('.price strong').textContent;
+                        const price = parseFloat(priceText.replace(/[^0-9]/g, ''));
+                        const imageUrl = card.querySelector('img').src;
+                        // Tạo một ID giả dựa trên tên để lưu vào giỏ hàng
+                        const staticProductId = name.replace(/\s+/g, '-').toLowerCase();
+                        
+                        addToCart(staticProductId, { name, price, imageUrl });
+                    } else {
+                        addToCart(productId);
+                    }
+                });
+            });
+        }
+
+        // 4. HÀM XỬ LÝ LOGIC THÊM SẢN PHẨM VÀO FIRESTORE
+        function addToCart(productId, productData = null) {
+            const userId = auth.currentUser.uid;
+            const cartItemRef = db.collection('carts').doc(userId).collection('items').doc(productId);
+
+            db.runTransaction(transaction => {
+                return transaction.get(cartItemRef).then(doc => {
+                    if (!doc.exists) {
+                        if (productData) { // Nếu là sản phẩm tĩnh, dùng data đã lấy
+                            transaction.set(cartItemRef, { ...productData, quantity: 1 });
+                        } else { // Nếu là sản phẩm động, lấy data từ collection 'products'
+                            const productRef = db.collection('products').doc(productId);
+                            return transaction.get(productRef).then(productDoc => {
+                                if (productDoc.exists) {
+                                    transaction.set(cartItemRef, { ...productDoc.data(), quantity: 1 });
+                                }
+                            });
+                        }
+                    } else {
+                        const newQuantity = doc.data().quantity + 1;
+                        transaction.update(cartItemRef, { quantity: newQuantity });
+                    }
+                });
+            }).then(() => {
+                alert('Đã thêm sản phẩm vào giỏ hàng!');
+            }).catch(error => {
+                console.error("Lỗi khi thêm vào giỏ hàng: ", error);
+            });
+        }
+
+        // 5. HÀM LẮNG NGHE VÀ CẬP NHẬT SỐ LƯỢNG TRÊN ICON GIỎ HÀNG
+        function listenToCart(userId) {
+            const cartCountElement = document.querySelector('.cart-count');
+            db.collection('carts').doc(userId).collection('items').onSnapshot(snapshot => {
+                let totalItems = 0;
+                snapshot.forEach(doc => {
+                    totalItems += doc.data().quantity;
+                });
+                if (cartCountElement) {
+                    cartCountElement.textContent = totalItems;
+                    cartCountElement.style.display = totalItems > 0 ? 'flex' : 'none';
+                }
+            });
+        }
+        
+        // Gọi hàm này ngay khi trang tải xong để gắn sự kiện cho các sản phẩm tĩnh
+        attachAddToCartListeners();
+    });
+  </script>
+</body>
+</html>

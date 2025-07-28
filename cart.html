@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWE - Giỏ hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Dùng chung CSS với trang chủ -->
+    <style>
+        .cart-page { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .cart-page h1 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
+        .cart-container { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .cart-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .cart-item img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; margin-right: 20px; }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-info h4 { margin: 0 0 10px; }
+        .cart-item-info p { margin: 0; color: #d9534f; font-weight: bold; }
+        .quantity-controls { display: flex; align-items: center; margin-top: 10px; }
+        .quantity-controls button { width: 30px; height: 30px; border: 1px solid #ccc; background: #f9f9f9; cursor: pointer; }
+        .quantity-controls span { padding: 0 15px; font-weight: bold; }
+        .remove-item-btn { background: none; border: none; color: #999; cursor: pointer; font-size: 1.2rem; margin-left: auto; padding: 10px; }
+        .order-summary { background: #f9f9f9; padding: 20px; border-radius: 8px; position: sticky; top: 100px; }
+        .order-summary h3 { margin-top: 0; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .summary-total { font-size: 1.2rem; font-weight: bold; border-top: 1px solid #ddd; padding-top: 15px; }
+        .checkout-btn { width: 100%; padding: 15px; background: #000; color: #fff; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; text-transform: uppercase; }
+        @media (max-width: 768px) { .cart-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = { apiKey: "AIzaSyAAdIRdEEvsdyob6G-Fg6fhAeaCmVCJ_1s", authDomain: "swe-b1034.firebaseapp.com", projectId: "swe-b1034", storageBucket: "swe-b1034.appspot.com", messagingSenderId: "210346329221", appId: "1:210346329221:web:fb481a412c2d93605355ec", measurementId: "G-3LWDZWWEQR" };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+          <a href="index.html" class="logo">swe</a>
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+            <button aria-label="Search">🔍</button>
+          </div>
+          <div class="user-actions" id="user-area">
+            <a href="tao_tk.html"><span class="icon">👤</span> Đăng nhập / Đăng ký</a>
+            <a href="cart.html" class="cart" aria-label="Giỏ hàng"><span class="icon">🛒</span><span class="cart-count">0</span></a>
+          </div>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <h1>Giỏ hàng của bạn</h1>
+        <div class="cart-container">
+            <div class="cart-items-list" id="cart-items-container">
+                <p>Đang tải giỏ hàng...</p>
+            </div>
+            <div class="order-summary">
+                <h3>Tổng cộng</h3>
+                <div class="summary-row">
+                    <span>Tạm tính</span>
+                    <span id="cart-subtotal">0₫</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Thành tiền</span>
+                    <span id="cart-total">0₫</span>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">Thanh toán</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartSubtotalEl = document.getElementById('cart-subtotal');
+            const cartTotalEl = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    loadCart(user.uid);
+                } else {
+                    cartItemsContainer.innerHTML = '<h2>Vui lòng <a href="tao_tk.html">đăng nhập</a> để xem giỏ hàng.</h2>';
+                    updateTotal(0);
+                }
+            });
+
+            function loadCart(userId) {
+                db.collection('carts').doc(userId).collection('items').onSnapshot(snapshot => {
+                    if (snapshot.empty) {
+                        cartItemsContainer.innerHTML = '<h2>Giỏ hàng của bạn đang trống.</h2>';
+                        updateTotal(0);
+                        return;
+                    }
+
+                    let html = '';
+                    let subtotal = 0;
+                    snapshot.forEach(doc => {
+                        const item = doc.data();
+                        const itemTotal = item.price * item.quantity;
+                        subtotal += itemTotal;
+
+                        // === ĐÂY LÀ PHẦN ĐÃ ĐƯỢC SỬA LỖI ===
+                        // Thay thế "..." bằng HTML đầy đủ của sản phẩm
+                        html += `
+                            <div class="cart-item" data-id="${doc.id}">
+                                <img src="${item.imageUrl}" alt="${item.name}">
+                                <div class="cart-item-info">
+                                    <h4>${item.name}</h4>
+                                    <p>${item.price.toLocaleString('vi-VN')}₫</p>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-decrease" data-id="${doc.id}">-</button>
+                                        <span>${item.quantity}</span>
+                                        <button class="quantity-increase" data-id="${doc.id}">+</button>
+                                    </div>
+                                </div>
+                                <button class="remove-item-btn" data-id="${doc.id}">×</button>
+                            </div>
+                        `;
+                    });
+                    cartItemsContainer.innerHTML = html;
+                    updateTotal(subtotal);
+                    attachCartActionListeners(userId);
+                });
+            }
+
+            function updateTotal(amount) {
+                const formattedAmount = amount.toLocaleString('vi-VN') + '₫';
+                cartSubtotalEl.textContent = formattedAmount;
+                cartTotalEl.textContent = formattedAmount;
+            }
+
+            function attachCartActionListeners(userId) {
+                cartItemsContainer.addEventListener('click', function(event) {
+                    const target = event.target;
+                    const productId = target.dataset.id;
+                    if (!productId) return;
+
+                    if (target.classList.contains('quantity-increase')) {
+                        updateQuantity(userId, productId, 1);
+                    } else if (target.classList.contains('quantity-decrease')) {
+                        updateQuantity(userId, productId, -1);
+                    } else if (target.classList.contains('remove-item-btn')) {
+                        removeItem(userId, productId);
+                    }
+                });
+            }
+
+            function updateQuantity(userId, productId, change) {
+                const itemRef = db.collection('carts').doc(userId).collection('items').doc(productId);
+                db.runTransaction(transaction => {
+                    return transaction.get(itemRef).then(doc => {
+                        if (!doc.exists) return;
+                        const newQuantity = doc.data().quantity + change;
+                        if (newQuantity > 0) {
+                            transaction.update(itemRef, { quantity: newQuantity });
+                        } else {
+                            transaction.delete(itemRef); // Xóa nếu số lượng về 0
+                        }
+                    });
+                });
+            }
+
+            function removeItem(userId, productId) {
+                if (confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                    db.collection('carts').doc(userId).collection('items').doc(productId).delete();
+                }
+            }
+
+            checkoutBtn.addEventListener('click', function() {
+                const userId = auth.currentUser ? auth.currentUser.uid : null;
+                if (!userId) {
+                    alert('Lỗi: Không tìm thấy người dùng.');
+                    return;
+                }
+
+                const itemsRef = db.collection('carts').doc(userId).collection('items');
+                itemsRef.get().then(snapshot => {
+                    if (snapshot.empty) {
+                        alert('Giỏ hàng của bạn đang trống!');
+                        return;
+                    }
+
+                    const batch = db.batch();
+                    snapshot.docs.forEach(doc => {
+                        batch.delete(doc.ref);
+                    });
+                    
+                    return batch.commit().then(() => {
+                        alert('Mua hàng thành công! Cảm ơn bạn đã mua sắm.');
+                    });
+                }).catch(error => {
+                    console.error("Lỗi khi thanh toán: ", error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

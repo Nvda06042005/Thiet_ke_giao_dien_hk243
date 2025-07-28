@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWE - Tài khoản & Quản trị</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="tao_tk.css">
+    
+    <!-- CSS DÀNH RIÊNG CHO ADMIN PANEL -->
+    <style>
+        .admin-panel {
+            display: none;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .admin-panel h1 { font-size: 28px; color: #333; }
+        .admin-panel h3 { font-size: 20px; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .admin-panel .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .admin-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .admin-button:hover { background-color: #0056b3; }
+        #product-list-container .product-item-admin {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        #product-list-container .product-item-admin:last-child { border-bottom: none; }
+        .product-item-admin img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; margin-right: 15px; }
+        .product-item-admin span { flex-grow: 1; font-size: 16px; }
+        .product-item-admin .product-actions button {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+        .product-item-admin .product-actions .edit-btn:hover { background-color: #f0f0f0; }
+        .product-item-admin .product-actions .delete-btn { border-color: #dc3545; color: #dc3545; }
+        .product-item-admin .product-actions .delete-btn:hover { background-color: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <!-- PHẦN 1: CẤU HÌNH VÀ KHỞI TẠO FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAAdIRdEEvsdyob6G-Fg6fhAeaCmVCJ_1s",
+            authDomain: "swe-b1034.firebaseapp.com",
+            projectId: "swe-b1034",
+            storageBucket: "swe-b1034.appspot.com",
+            messagingSenderId: "210346329221",
+            appId: "1:210346329221:web:fb481a412c2d93605355ec",
+            measurementId: "G-3LWDZWWEQR"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
+
+    <!-- PHẦN 2: TOÀN BỘ GIAO DIỆN HTML CỦA BẠN -->
+    <div class="login-modal-overlay" id="loginModalOverlay">
+        <div class="login-box">
+            <h2 class="login-title">ĐĂNG NHẬP TÀI KHOẢN</h2>
+            <p class="login-subtitle">Nhập email và mật khẩu của bạn:</p>
+            <div class="form-group"><input type="email" placeholder="Email" id="login-email"></div>
+            <div class="form-group"><input type="password" placeholder="Mật khẩu" id="login-password"></div>
+            <p class="login-info-text">This site is protected by reCAPTCHA...</p>
+            <button class="login-button" id="login-btn">ĐĂNG NHẬP</button>
+            <div class="login-links">
+                <p>Khách hàng mới?<a href="tao_tk.html" class="btn-create-account">Tạo tài khoản</a></p>
+                <p>Quên mật khẩu? <a href="#" id="showForgotPassword">Khôi phục mật khẩu</a></p>
+            </div>
+            <button class="close-login-box" id="closeLoginBox">×</button>
+        </div>
+    </div>
+    <div class="login-modal-overlay" id="forgotPasswordModal" style="display: none;">...</div>
+    <div class="top-banner">Miễn phí vận chuyển với đơn hàng trên 500K...</div>
+    <header class="header">
+        <div class="container header-content">
+            <div class="header-left">
+                <img src="../imgs/logo.png" alt="Logo">
+                <div class="search-bar"><input type="text" placeholder="Tìm kiếm sản phẩm..."><button><i class="fas fa-search"></i></button></div>
+            </div>
+            <div class="header-right">
+                <div class="user-account">
+                    <a href="#" id="user-area-btn" class="unfied-login-area">
+                        <i class="far fa-user"></i> 
+                        <div class="user-text">
+                            <span>Đăng nhập / Đăng ký</span><br>
+                            <span>Tài khoản của tôi <i class="fas fa-caret-down"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="cart"><i class="fas fa-shopping-bag"></i><a href="#">Giỏ hàng</a><span>0</span></div>
+        </div>
+    </header>
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a href="#">best-selling items</a></li>
+                <li class="nav-item"><a href="#">tops</a></li>
+                <li class="nav-item"><a href="#">bottoms</a></li>
+                <li class="nav-item"><a href="#">outerwear</a></li>
+                <li class="nav-item"><a href="#">accessories</a></li>
+                <li class="nav-item"><a href="#">sale off</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="main-content container">
+        <div class="create-account-left"><h1>Tạo tài khoản</h1><div class="underline"></div></div>
+        <div class="create-account-form">
+            <div class="form-group"><input type="text" id="register-ho" placeholder="Họ"></div>
+            <div class="form-group"><input type="text" id="register-ten" placeholder="Tên"></div>
+            <div class="form-group gender-options"><label><input type="radio" name="gender" value="nu"> Nữ</label><label><input type="radio" name="gender" value="nam"> Nam</label></div>
+            <div class="form-group"><input type="text" placeholder="mm/dd/yyyy"></div>
+            <div class="form-group"><input type="email" id="register-email" placeholder="Email"></div>
+            <div class="form-group"><input type="password" id="register-password" placeholder="Mật khẩu"></div>
+            <p class="form-info-text">This site is protected by reCAPTCHA...</p>
+            <button class="register-button" id="register-btn">ĐĂNG KÝ</button>
+            <div class="back-to-home"><a href="index.html"><i class="fas fa-arrow-left"></i> Quay lại trang chủ</a></div>
+        </div>
+        <div class="admin-panel" id="admin-panel">
+            <div class="admin-panel-header"><h1><i class="fas fa-shield-alt"></i> Admin Panel - Quản lý sản phẩm</h1><div class="underline"></div></div>
+            <div class="admin-section">
+                <h3>Thêm sản phẩm mới</h3>
+                <div class="form-group"><input type="text" id="product-name" placeholder="Tên sản phẩm"></div>
+                <div class="form-group"><input type="number" id="product-price" placeholder="Giá sản phẩm (VNĐ)"></div>
+                <div class="form-group"><input type="text" id="product-image-url" placeholder="URL hình ảnh sản phẩm"></div>
+                <button class="admin-button" id="add-product-btn">Thêm sản phẩm</button>
+            </div>
+            <div class="admin-section">
+                <h3>Danh sách sản phẩm hiện tại</h3>
+                <div id="product-list-container"></div>
+            </div>
+        </div>
+    </main>
+    <section class="promotion-signup">...</section>
+    <footer class="footer">...</footer>
+
+    <!-- PHẦN 3: TOÀN BỘ LOGIC JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginModalOverlay = document.getElementById('loginModalOverlay');
+            const userAreaButton = document.getElementById('user-area-btn');
+            const closeLoginButton = document.getElementById('closeLoginBox');
+            const adminPanel = document.getElementById('admin-panel');
+            const registerButton = document.getElementById('register-btn');
+            const loginButton = document.getElementById('login-btn');
+            const addProductButton = document.getElementById('add-product-btn');
+
+            userAreaButton.addEventListener('click', e => { if (!auth.currentUser) { e.preventDefault(); loginModalOverlay.style.display = 'flex'; } });
+            closeLoginButton.addEventListener('click', () => { loginModalOverlay.style.display = 'none'; });
+
+            registerButton.addEventListener('click', () => {
+                const ho = document.getElementById('register-ho').value;
+                const ten = document.getElementById('register-ten').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                if (!ho || !ten || !email || !password) { alert('Vui lòng điền đủ thông tin.'); return; }
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(cred => {
+                        alert('Tạo tài khoản thành công!');
+                        return db.collection('users').doc(cred.user.uid).set({ ho, ten, email, role: 'user' });
+                    })
+                    .catch(err => alert('Lỗi đăng ký: ' + err.message));
+            });
+
+            loginButton.addEventListener('click', () => {
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                if (!email || !password) { alert('Vui lòng nhập email và mật khẩu.'); return; }
+                auth.signInWithEmailAndPassword(email, password)
+                    .then(() => { alert('Đăng nhập thành công!'); loginModalOverlay.style.display = 'none'; })
+                    .catch(err => alert('Lỗi đăng nhập: ' + err.message));
+            });
+
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    db.collection('users').doc(user.uid).get().then(doc => {
+                        if (!doc.exists) return;
+                        const userData = doc.data();
+                        userAreaButton.innerHTML = `<i class="far fa-user"></i><div class="user-text"><span>Xin chào, ${userData.ten}</span><br><a href="#" id="logout-btn" style="color: white; text-decoration: underline;">Đăng xuất</a></div>`;
+                        document.getElementById('logout-btn').addEventListener('click', e => { e.preventDefault(); auth.signOut(); });
+                        if (userData.role === 'admin') {
+                            adminPanel.style.display = 'block';
+                            loadProductsForAdmin();
+                        } else {
+                            adminPanel.style.display = 'none';
+                        }
+                    });
+                } else {
+                    adminPanel.style.display = 'none';
+                    userAreaButton.innerHTML = `<i class="far fa-user"></i><div class="user-text"><span>Đăng nhập / Đăng ký</span><br><span>Tài khoản của tôi <i class="fas fa-caret-down"></i></span></div>`;
+                }
+            });
+
+            function loadProductsForAdmin() {
+                const container = document.getElementById('product-list-container');
+                db.collection('products').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
+                    let html = '';
+                    snapshot.forEach(doc => {
+                        const p = doc.data();
+                        html += `<div class="product-item-admin">
+                                    <img src="${p.imageUrl}" alt="${p.name}">
+                                    <span>${p.name} - ${p.price.toLocaleString('vi-VN')} VNĐ</span>
+                                    <div class="product-actions">
+                                        <button class="edit-btn" data-id="${doc.id}">Sửa</button>
+                                        <button class="delete-btn" data-id="${doc.id}">Xóa</button>
+                                    </div>
+                                 </div>`;
+                    });
+                    container.innerHTML = html;
+                    attachAdminEventListeners();
+                });
+            }
+
+            function attachAdminEventListeners() {
+                document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', e => {
+                    if (confirm('Bạn có chắc muốn xóa?')) db.collection('products').doc(e.target.dataset.id).delete();
+                }));
+                document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', e => {
+                    const newPrice = prompt('Nhập giá mới:');
+                    if (newPrice && !isNaN(newPrice)) db.collection('products').doc(e.target.dataset.id).update({ price: Number(newPrice) });
+                }));
+            }
+
+            addProductButton.addEventListener('click', () => {
+                const name = document.getElementById('product-name').value;
+                const price = Number(document.getElementById('product-price').value);
+                const imageUrl = document.getElementById('product-image-url').value;
+                if (!name || !price || !imageUrl) { alert('Vui lòng nhập đủ thông tin.'); return; }
+                db.collection('products').add({ name, price, imageUrl, createdAt: firebase.firestore.FieldValue.serverTimestamp() })
+                    .then(() => {
+                        alert('Thêm sản phẩm thành công!');
+                        document.getElementById('product-name').value = '';
+                        document.getElementById('product-price').value = '';
+                        document.getElementById('product-image-url').value = '';
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
