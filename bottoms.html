@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOTTOMS - SWE (STREETWEAREAZY)</title>
+    <link rel="stylesheet" href="styletops.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <p>Miễn phí vận chuyển với đơn hàng trên 500K. Hàng pre-order còn được giảm thêm 5%.</p>
+        </div>
+        
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>SWE</h2>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                </div>
+                
+                <div class="nav-actions">
+                    <div class="account">
+                        <span>Đăng nhập / Đăng ký</span>
+                    </div>
+                    <div class="cart">
+                        <span>Giỏ hàng</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Navigation Menu moved below logo -->
+        <div class="nav-menu-section">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="#">new arrivals</a></li>
+                    <li><a href="#">best-selling items</a></li>
+                    <li><a href="tops.html">tops</a></li>
+                    <li><a href="#" class="active">bottoms</a></li>
+                    <li><a href="outerwear.html">outerwear</a></li>
+                    <li><a href="#">accessories</a></li>
+                    <li><a href="#">sale off</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="#">Trang chủ</a> > 
+            <a href="#">Danh mục</a> > 
+            <span>BOTTOMS</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">BOTTOMS</h1>
+
+            <!-- Filter and Sort -->
+            <div class="filter-sort-section">
+                <div class="filter-toggle">
+                    <button class="filter-btn">Bộ lọc</button>
+                </div>
+                
+                <div class="sort-dropdown">
+                    <select>
+                        <option>Sản phẩm nổi bật</option>
+                        <option>Giá: Tăng dần</option>
+                        <option>Giá: Giảm dần</option>
+                        <option>Tên: A-Z</option>
+                        <option>Tên: Z-A</option>
+                        <option>Cũ nhất</option>
+                        <option>Mới nhất</option>
+                        <option>Bán chạy nhất</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Horizontal Filter Section -->
+            <div class="horizontal-filter">
+                <div class="filter-item">
+                    <button class="filter-dropdown-btn" onclick="toggleFilter('price')">
+                        Giá sản phẩm
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="filter-dropdown" id="price-filter">
+                        <label><input type="checkbox"> Dưới 150,000₫</label>
+                        <label><input type="checkbox"> 150,000₫ - 250,000₫</label>
+                        <label><input type="checkbox"> 250,000₫ - 350,000₫</label>
+                        <label><input type="checkbox"> 350,000₫ - 500,000₫</label>
+                        <label><input type="checkbox"> Trên 500,000₫</label>
+                    </div>
+                </div>
+                
+                <div class="filter-item">
+                    <button class="filter-dropdown-btn" onclick="toggleFilter('size')">
+                        Kích thước
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="filter-dropdown" id="size-filter">
+                        <label><input type="checkbox"> S</label>
+                        <label><input type="checkbox"> M</label>
+                        <label><input type="checkbox"> L</label>
+                        <label><input type="checkbox"> XL</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid - 4 columns, 5 rows -->
+            <div class="product-grid">
+                <!-- Hàng 1 -->
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <a href="chitietsanphambottom.html" class="product-link">
+                            <img src="Bottoms/anh 1.jpg" alt="SWE WIDE JEANS - WASHED BLUE">
+                        </a>
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE WIDE JEANS - WASHED BLUE</h3>
+                        <div class="price">
+                            <span class="current-price">720,000₫</span>
+                            <span class="original-price">792,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.2)</span>
+                                <span class="rating-count">- 18 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <a href="chitietsanphambottom1.html" class="product-link">
+                            <img src="Bottoms/anh 2.jpg" alt="SWE ARC WIDE JEANS - MUD FADE">
+                        </a>
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE ARC WIDE JEANS - MUD FADE</h3>
+                        <div class="price">
+                            <span class="current-price">720,000₫</span>
+                            <span class="original-price">792,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.8)</span>
+                                <span class="rating-count">- 25 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="sold-out-badge">Hết hàng</div>
+                        <img src="Bottoms/anh 3.jpg" alt="SWE CARGO SHORTS - WHITE">
+                        <button class="quick-buy disabled">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE CARGO SHORTS - WHITEh</h3>
+                        <div class="price">
+                            <span class="current-price">450,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.1)</span>
+                                <span class="rating-count">- 12 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 4.jpg" alt="SWE CARGO SHORTS - BLACK">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE CARGO SHORTS - BLACK</h3>
+                        <div class="price">
+                            <span class="current-price">450,000₫</span>
+                            <span class="original-price">495,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.9)</span>
+                                <span class="rating-count">- 31 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hàng 2 -->
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 5.jpg" alt="SWE CARGO SHORTS - SNOW">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE CARGO SHORTS - SNOW</h3>
+                        <div class="price">
+                            <span class="current-price">500,000₫</span>
+                            <span class="original-price">550,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.3)</span>
+                                <span class="rating-count">- 22 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 6.jpg" alt="SWE CARGO PANTS - DARKBYTE">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE CARGO PANTS - DARKBYTE</h3>
+                        <div class="price">
+                            <span class="current-price">720,000₫</span>
+                            <span class="original-price">792,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(3.8)</span>
+                                <span class="rating-count">- 15 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 7.jpg" alt="SWE PANEL FADE JEANS - ACID">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE PANEL FADE JEANS - ACID</h3>
+                        <div class="price">
+                            <span class="current-price">720,000₫</span>
+                            <span class="original-price">792,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.7)</span>
+                                <span class="rating-count">- 28 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 8.jpg" alt="SWE DUNE JEANS - BLUE">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE DUNE JEANS - BLUE</h3>
+                        <div class="price">
+                            <span class="current-price">690,000₫</span>
+                            <span class="original-price">759,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.4)</span>
+                                <span class="rating-count">- 19 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hàng 3 -->
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 9.jpg" alt="SWE UNIT9 SHORTS - RED">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE UNIT9 SHORTS - RED</h3>
+                        <div class="price">
+                            <span class="current-price">420,000₫</span>
+                            <span class="original-price">462,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.6)</span>
+                                <span class="rating-count">- 24 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 10.jpg" alt="SWE UNIT9 SHORTS - WHITE">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE UNIT9 SHORTS - WHITE</h3>
+                        <div class="price">
+                            <span class="current-price">420,000₫</span>
+                            <span class="original-price">462,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.0)</span>
+                                <span class="rating-count">- 16 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 11.jpg" alt="SWE UNIT9 SHORTS - BLACK">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE UNIT9 SHORTS - BLACK</h3>
+                        <div class="price">
+                            <span class="current-price">420,000₫</span>
+                            <span class="original-price">462,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.5)</span>
+                                <span class="rating-count">- 21 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 12.jpg" alt="SWE NOMAD SHORTS - BLUE">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE NOMAD SHORTS - BLUE</h3>
+                        <div class="price">
+                            <span class="current-price">554,400₫</span>
+                            <span class="original-price">660,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(3.9)</span>
+                                <span class="rating-count">- 13 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hàng 4 -->
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 13.jpg" alt="SWE 2BAR SHORTS - RED">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE 2BAR SHORTS - RED</h3>
+                        <div class="price">
+                            <span class="current-price">450,000₫</span>
+                            <span class="original-price">495,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.8)</span>
+                                <span class="rating-count">- 35 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 14.jpg" alt="SWE 2BAR SHORTS - BLUE">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE 2BAR SHORTS - BLUE</h3>
+                        <div class="price">
+                            <span class="current-price">450,000₫</span>
+                            <span class="original-price">495,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.3)</span>
+                                <span class="rating-count">- 27 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 15.jpg" alt="SWE SWEATPANTS - BLACK">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE SWEATPANTS - BLACK</h3>
+                        <div class="price">
+                            <span class="current-price">400,000₫</span>
+                            <span class="original-price">440,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.7)</span>
+                                <span class="rating-count">- 29 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 16.jpg" alt="SWE SWEATPANTS - GRAY">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE SWEATPANTS - GRAY</h3>
+                        <div class="price">
+                            <span class="current-price">550,000₫</span>
+                            <span class="original-price">605,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.1)</span>
+                                <span class="rating-count">- 17 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hàng 5 -->
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 17.jpg" alt="SWE BLAZE JEANS - NAVY">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE BLAZE JEANS - NAVY</h3>
+                        <div class="price">
+                            <span class="current-price">586,080₫</span>
+                            <span class="original-price">792,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.6)</span>
+                                <span class="rating-count">- 23 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 18.jpg" alt="SWE WASHED JEANS - BLUE">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE WASHED JEANS - BLUE</h3>
+                        <div class="price">
+                            <span class="current-price">350,000₫</span>
+                            <span class="original-price">385,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.2)</span>
+                                <span class="rating-count">- 20 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 19.jpg" alt="SWE WASHED JEANS - LIGHT">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE WASHED JEANS - LIGHT</h3>
+                        <div class="price">
+                            <span class="current-price">520,000₫</span>
+                            <span class="original-price">572,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(3.7)</span>
+                                <span class="rating-count">- 14 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="discount-badge">-9%</div>
+                        <img src="Bottoms/anh 20.jpg" alt="SWE EDGE WASHED JEANS - BLACK">
+                        <button class="quick-buy">Mua ngay</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SWE EDGE WASHED JEANS - BLACK</h3>
+                        <div class="price">
+                            <span class="current-price">680,000₫</span>
+                            <span class="original-price">748,000₫</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                                <span class="star filled">⭐</span>
+                            </div>
+                            <div class="rating-text">
+                                <span class="rating-score">(4.9)</span>
+                                <span class="rating-count">- 42 đánh giá</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <span class="current">1</span>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span>…</span>
+                <a href="#">8</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <h4>Nhận khuyến mãi</h4>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Nhập email của bạn">
+                    <button type="submit">Đăng ký</button>
+                </div>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ABOUT US</h4>
+                    <p>Được thành lập vào cuối năm 2016 trong bối cảnh thời trang streetstyle dần nhen nhóm vào thị trường Việt Nam. Sau 6 năm phát triển, SWE - Street Wear Eazy với slogan Young kids with a mission™ đã chiếm được tình cảm của hầu hết các bạn trẻ yêu mến thời trang đường phố trên khắp cả nước.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>CHÍNH SÁCH</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Phương thức thanh toán</a></li>
+                        <li><a href="#">Chính sách giao nhận - vận chuyển</a></li>
+                        <li><a href="#">Chính sách đổi và bảo hành sản phẩm</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>HỆ THỐNG CỬA HÀNG SWE</h4>
+                    <ul>
+                        <li>Store 1: 44A Trần Quang Diệu, Phường Nhiêu Lộc, TP.HCM</li>
+                        <li>Store 2: TNP, 26 Lý Tự Trọng, Phường Sài Gòn, TP.HCM</li>
+                        <li>Store 3: Store 29 - 30 TNP, Tầng B1, Vincom Center Đồng Khởi, Phường Sài Gòn, TP.HCM</li>
+                        <li>Đại lý phân phối chính hãng: SN 84, Tổ 9, Hoàng Công Chất, P. Mường Thanh, TP Điện Biên</li>
+                        <li><a href="tel:0357420420">0357 420 420</a></li>
+                        <li><a href="mailto:streetweareazy@gmail.com">streetweareazy@gmail.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>FANPAGE</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook">Facebook</a>
+                        <a href="#" class="social-link instagram">Instagram</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Copyright © 2025 <a href="#">SWE (STREETWEAREAZY)</a>. <a href="#">Powered by Haravan</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFilter(filterType) {
+            const dropdown = document.getElementById(filterType + '-filter');
+            const button = dropdown.previousElementSibling;
+            const arrow = button.querySelector('.arrow');
+            
+            // Close all other dropdowns
+            const allDropdowns = document.querySelectorAll('.filter-dropdown');
+            const allArrows = document.querySelectorAll('.arrow');
+            
+            allDropdowns.forEach((dd, index) => {
+                if (dd !== dropdown) {
+                    dd.classList.remove('active');
+                    allArrows[index].style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('active');
+            
+            if (dropdown.classList.contains('active')) {
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const filterItems = document.querySelectorAll('.filter-item');
+            let clickedInside = false;
+            
+            filterItems.forEach(item => {
+                if (item.contains(event.target)) {
+                    clickedInside = true;
+                }
+            });
+            
+            if (!clickedInside) {
+                const allDropdowns = document.querySelectorAll('.filter-dropdown');
+                const allArrows = document.querySelectorAll('.arrow');
+                
+                allDropdowns.forEach((dropdown, index) => {
+                    dropdown.classList.remove('active');
+                    allArrows[index].style.transform = 'rotate(0deg)';
+                });
+            }
+        });
+
+        // Clear all filters
+        document.querySelector('.clear-all-filters')?.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('.filter-dropdown input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        });
+    </script>
+</body>
+</html>
+
