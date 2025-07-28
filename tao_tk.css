@@ -1,0 +1,650 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #000;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f0f0f0; /* Light gray background for input fields */
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* ô ĐĂNG NHẬP */
+/* Login Modal/Box Styles */
+
+/* Lớp phủ nền */
+.login-modal-overlay {
+    display: flex; 
+    position: fixed; /* Cố định trên màn hình */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+    display: none; /* Dùng flexbox để căn giữa box đăng nhập */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Đảm bảo nằm trên cùng */
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px; /* Chiều rộng tối đa của box */
+    position: relative; /* Để đặt nút đóng */
+    text-align: center; /* Căn giữa các tiêu đề và nút */
+}
+
+.login-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Các trường input trong box đăng nhập */
+.login-box .form-group input {
+    width: 100%; /* Đảm bảo input full chiều rộng của box */
+    padding: 12px;
+    margin-bottom: 15px; /* Giảm khoảng cách giữa các input */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f0f0f0; /* Giống như các input khác */
+    outline: none;
+}
+
+.login-box .form-group input:focus {
+    border-color: #000; /* Đổi màu viền khi focus */
+}
+
+.login-info-text {
+    font-size: 13px;
+    color: #666;
+    margin-top: -5px; /* Điều chỉnh khoảng cách trên */
+    margin-bottom: 25px; /* Khoảng cách dưới */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+.login-info-text a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-info-text a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: #333; /* Màu nền nút */
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #000; /* Màu nền nút khi hover */
+}
+
+.login-links {
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.login-links p {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.login-links a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* Nút đóng box */
+.close-login-box {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #888;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1; /* Để căn chỉnh dấu 'x' */
+    padding: 0;
+}
+
+.close-login-box:hover {
+    color: #333;
+}
+
+/* Header */
+.top-banner {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 30px;
+}
+
+.search-bar {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 500px; /* Adjust as needed */
+}
+
+.search-bar input {
+    border: none;
+    padding: 10px;
+    flex-grow: 1;
+    outline: none;
+    background-color: transparent;
+    text-align: left; /* Align text to the left */
+}
+
+.search-bar button {
+    background-color: #eee;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.search-bar button i {
+    color: #555;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-account, .cart {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+.user-account i, .cart i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.cart span {
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Navigation */
+.nav {
+    background-color: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start; /* Align to start for the menu items */
+}
+
+.nav-item {
+    margin-right: 40px;
+}
+
+.nav-item a {
+    font-weight: bold;
+    color: #555;
+}
+
+.nav-item a:hover {
+    color: #000;
+}
+
+/* Main Content - Account Creation */
+.main-content {
+    display: flex;
+    padding: 50px 0;
+    min-height: 500px;
+}
+
+.create-account-left {
+    flex: 1;
+    padding-right: 50px;
+}
+
+.create-account-left h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.create-account-left .underline {
+    width: 80px;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 30px;
+}
+
+.create-account-form {
+    flex: 1;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.gender-options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.gender-options label {
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.gender-options input[type="radio"] {
+    margin-right: 8px;
+    appearance: none; /* Hide default radio button */
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+}
+
+.gender-options input[type="radio"]:checked {
+    background-color: #333;
+    border-color: #333;
+}
+
+.gender-options input[type="radio"]:checked::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.form-info-text {
+    font-size: 13px;
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.form-info-text a {
+    color: #007bff;
+}
+
+.register-button {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.register-button:hover {
+    background-color: #333;
+}
+
+.back-to-home {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.back-to-home a {
+    color: #555;
+}
+
+.back-to-home i {
+    margin-right: 8px;
+}
+
+
+/* Footer - Promotion Signup */
+.promotion-signup {
+    background-color: #fff;
+    padding: 30px 0;
+    border-top: 1px solid #eee;
+    margin-top: 40px;
+}
+
+.promotion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promotion-content i {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #555;
+}
+
+.promotion-content h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-right: 30px;
+}
+
+.promotion-input {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 350px;
+}
+
+.promotion-input input {
+    border: none;
+    padding: 10px;
+    flex-grow: 1;
+    outline: none;
+    background-color: transparent;
+}
+
+.promotion-input button {
+    background-color: #eee;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.promotion-input button i {
+    color: #555;
+}
+
+/* Footer - Main Footer */
+.footer {
+    background-color: #f0f0f0;
+    padding: 50px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1.5fr; /* Adjust column widths as needed */
+    gap: 30px;
+}
+
+.footer-section h4 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.footer-section p, .footer-section ul {
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: #555;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.store-location {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.store-location i {
+    margin-right: 10px;
+    margin-top: 4px; /* Adjust icon alignment */
+    color: #777;
+}
+/* Footer - Fanpage Section */
+
+.fanpage-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden; /* Quan trọng để ảnh bìa và ảnh đại diện không tràn ra ngoài */
+    text-align: left; /* Căn chỉnh nội dung trong box */
+    position: relative; /* Để có thể định vị tuyệt đối các phần tử con */
+    padding-bottom: 15px; /* Thêm padding dưới để nút không bị sát cạnh */
+}
+
+.fanpage-cover-image {
+    width: 100%;
+    height: 120px; /* Chiều cao của ảnh bìa */
+    background-image: url('http://googleusercontent.com/file_content/1'); /* Thay bằng URL ảnh bìa của bạn */
+    background-size: cover; /* Đảm bảo ảnh bìa phủ kín */
+    background-position: center; /* Căn giữa ảnh bìa */
+    background-repeat: no-repeat;
+    position: relative; /* Để ảnh đại diện có thể định vị tương đối với nó */
+}
+
+.fanpage-profile-picture {
+    position: absolute; /* Định vị tuyệt đối */
+    bottom: -30px; /* Di chuyển lên trên từ dưới cùng của ảnh bìa */
+    border: 3px solid #fff; /* Viền trắng */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1); /* Hộp bóng nhẹ */
+}
+
+.fanpage-profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
+}
+
+.fanpage-info {
+    padding: 35px 15px 10px; /* Padding trên đủ để ảnh đại diện không che mất chữ */
+    text-align: left;
+}
+
+.fanpage-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.fanpage-name i { /* Icon tick xanh */
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.fanpage-followers {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 15px; /* Khoảng cách với các nút */
+}
+
+.fanpage-actions {
+    display: flex;
+    justify-content: flex-start; /* Căn các nút về bên trái */
+    gap: 10px; /* Khoảng cách giữa các nút */
+    padding: 0 15px; /* Padding hai bên */
+}
+
+.fanpage-actions .follow-button,
+.fanpage-actions .share-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.fanpage-actions .follow-button {
+    background-color: #1877f2; /* Màu xanh Facebook */
+    color: #fff;
+    border: 1px solid #1877f2;
+}
+
+.fanpage-actions .follow-button:hover {
+    background-color: #166fe5;
+}
+
+.fanpage-actions .follow-button i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.fanpage-actions .share-button {
+    background-color: #f0f2f5; /* Màu xám nhạt */
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.fanpage-actions .share-button:hover {
+    background-color: #e4e6eb;
+}
+
+.fanpage-actions .share-button i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.footer-contact {
+    margin-top: 20px;
+}
+
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #777;
+}
+
+.social-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: #555;
+    font-size: 20px;
+}
+
+.social-links a:hover {
+    color: #000;
+}
+img{
+    width: 130px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-right: 60px;
+}

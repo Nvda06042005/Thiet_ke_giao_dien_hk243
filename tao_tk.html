@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWE - Tạo tài khoản</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="tao_tk.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+    
+<!--Ô đăng nhập-->
+<div class="login-modal-overlay" id="loginModalOverlay">
+    <div class="login-box">
+        <h2 class="login-title">ĐĂNG NHẬP TÀI KHOẢN</h2>
+        <p class="login-subtitle">Nhập email và mật khẩu của bạn:</p>
+
+        <div class="form-group">
+            <input type="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input type="password" placeholder="Mật khẩu">
+        </div>
+
+        <p class="login-info-text">
+            This site is protected by reCAPTCHA and the Google
+            <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+        </p>
+
+        <button class="login-button">ĐĂNG NHẬP</button>
+
+        <div class="login-links">
+            <p>Khách hàng mới?<a href="tao_tk.html" class="btn-create-account">Tạo tài khoản</a>
+</p>
+<p>Quên mật khẩu? <a href="#" id="showForgotPassword">Khôi phục mật khẩu</a></p>
+        </div>
+
+        <button class="close-login-box" id="closeLoginBox">&times;</button>
+    </div>
+</div>
+<!-- Modal Khôi phục mật khẩu -->
+<div class="login-modal-overlay" id="forgotPasswordModal" style="display: none;">
+    <div class="login-box">
+        <h2 class="login-title">KHÔI PHỤC MẬT KHẨU</h2>
+        <p class="login-subtitle">Nhập email của bạn:</p>
+
+        <div class="form-group">
+            <input type="email" placeholder="Email">
+        </div>
+
+        <p class="login-info-text">
+            This site is protected by reCAPTCHA and the Google
+            <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+        </p>
+
+        <button class="login-button">KHÔI PHỤC</button>
+
+        <div class="login-links">
+            <p>Bạn đã nhớ mật khẩu? <a href="#" id="backToLogin">Trở về đăng nhập</a></p>
+        </div>
+
+        <button class="close-login-box" onclick="closeForgotPasswordModal()">&times;</button>
+    </div>
+</div>
+
+<!-- Top Banner -->
+    <div class="top-banner">
+        Miễn phí vận chuyển với đơn hàng trên 500K. Hàng pre-order còn được giảm thêm 5%.
+    </div>
+
+    <header class="header">
+        <div class="container header-content">
+            <div class="header-left">
+                <img src="../imgs/logo.png" alt="">
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-account">
+                    <a href="#" data-action="show-login-box" class="unfied-login-area">
+                    <i class="far fa-user"></i> 
+                     <div class="user-text">
+                        <span>Đăng nhập / Đăng ký</span><br>
+                        <span>Tài khoản của tôi <i class="fas fa-caret-down"></i></span>
+                     </div>
+                    </a>
+                </div>
+            </div>
+                <div class="cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <a href="#">Giỏ hàng</a>
+                    <span>0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#">new arrivals</a></li>
+                <li class="nav-item"><a href="#">best-selling items</a></li>
+                <li class="nav-item"><a href="#">tops</a></li>
+                <li class="nav-item"><a href="#">bottoms</a></li>
+                <li class="nav-item"><a href="#">outerwear</a></li>
+                <li class="nav-item"><a href="#">accessories</a></li>
+                <li class="nav-item"><a href="#">sale off</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content container">
+        <div class="create-account-left">
+            <h1>Tạo tài khoản</h1>
+            <div class="underline"></div>
+        </div>
+        <div class="create-account-form">
+            <div class="form-group">
+                <input type="text" placeholder="Họ">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Tên">
+            </div>
+            <div class="form-group gender-options">
+                <label>
+                    <input type="radio" name="gender" value="nu"> Nữ
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="nam"> Nam
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="mm/dd/yyyy">
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Mật khẩu">
+            </div>
+            <p class="form-info-text">
+                This site is protected by reCAPTCHA and the Google
+                <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+            </p>
+            <button class="register-button">ĐĂNG KÝ</button>
+            <div class="back-to-home">
+                <a href="#"><i class="fas fa-arrow-left"></i> Quay lại trang chủ</a>
+            </div>
+        </div>
+    </main>
+
+    <section class="promotion-signup">
+        <div class="container promotion-content">
+            <i class="far fa-envelope"></i>
+            <h3>Nhận khuyến mãi</h3>
+            <div class="promotion-input">
+                <input type="email" placeholder="Nhập email của bạn">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </section>
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-section about-us">
+                <h4>ABOUT US</h4>
+                <p>Được thành lập vào cuối năm 2016 trong bối cảnh thời trang streetstyle dần nhộn nhịp vào thị trường Việt Nam. Sau 6 năm phát triển, SWE - Street Wear Eazy với slogan "Young kids with a mission" đã chiếm được tình cảm của hầu hết các bạn trẻ yêu mến thời trang đường phố trên khắp cả nước.</p>
+            </div>
+            <div class="footer-section policy">
+                <h4>CHÍNH SÁCH</h4>
+                <ul>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Phương thức thanh toán</a></li>
+                    <li><a href="#">Chính sách giao nhận - vận chuyển</a></li>
+                    <li><a href="#">Chính sách đổi và bảo hành sản phẩm</a></li>
+                </ul>
+            </div>
+            <div class="footer-section store-system">
+                <h4>HỆ THỐNG CỬA HÀNG SWE</h4>
+                <div class="store-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Store 1: 44A Trần Quang Diệu, Phường Nhiêu Lộc, TPHCM</p>
+                </div>
+                <div class="store-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Store 2: 2N, TP 26 Lý Tự Trọng, Phường Sài Gòn, TPHCM</p>
+                </div>
+                <div class="store-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Store 3: Store 29 - 30 TNP, Tầng B1, Vincom Center Đồng Khởi, Phường Sài Gòn, TPHCM</p>
+                </div>
+                <div class="store-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Đại lý phân phối chính hãng SN 84, Tổ 9, Hoàng Công Chắt, P. Mường Thanh, TP Điện Biên</p>
+                </div>
+                <div class="footer-contact">
+                    <p><i class="fas fa-phone"></i> 0357 420 420</p>
+                    <p><i class="fas fa-envelope"></i> streetwearcazyj@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-section fanpage">
+                <h4>FANPAGE</h4>
+                <div class="fanpage-box">
+                    <div class="fanpage-cover-image">
+                        <div class="fanpage-profile-picture">
+                            <img src="imgs/bg.jpg" alt="SWE Logo">
+                        </div>
+                    </div>
+                    <div class="fanpage-info">
+                        <p class="fanpage-name">
+                            SWE <i class="fas fa-badge-check" style="color: #1877f2;"></i>
+                        </p>
+                        <p class="fanpage-followers">1,071,524 người theo dõi</p>
+                    </div>
+                    <div class="fanpage-actions">
+                        <a href="#" class="follow-button"><i class="fab fa-facebook-f"></i> Theo dõi Trang</a>
+                        <a href="#" class="share-button"><i class="fas fa-share"></i> Chia sẻ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-links container">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>
